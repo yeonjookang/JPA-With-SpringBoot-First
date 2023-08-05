@@ -11,13 +11,11 @@ public class Member {
     @Column(name="MEMBER_ID")
     private Long id;
 
-    @Column(name="NAME")
     private String name;
 
     @Embedded
     private Address address;
 
     @OneToMany(mappedBy = "member")
-    @Column(name="ORDERS")
     private List<Order> orders = new ArrayList<>();
 }

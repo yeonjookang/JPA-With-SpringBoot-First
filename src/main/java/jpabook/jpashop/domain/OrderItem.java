@@ -7,26 +7,23 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@Table(name="order_item")
 public class OrderItem {
 
     @Id
     @GeneratedValue
-    @Column(name="ORDER_ID")
+    @Column(name="order_item_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="ITEM_ID")
-    @Column(name="ITEM")
+    @JoinColumn(name="item_id")
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    @Column(name="ORDER")
+    @JoinColumn(name = "order_id")
     private Order order;
 
-    @Column(name="ORDER_PRICE")
     private int orderPrice;
 
-    @Column(name="COUNT")
     private int count;
 }

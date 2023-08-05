@@ -14,26 +14,22 @@ import java.util.List;
 @Getter @Setter
 public class Order {
     @Id @GeneratedValue
-    @Column(name="ORDER_ID")
+    @Column(name="order_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="MEMBER_ID")
+    @JoinColumn(name="member_id")
     private Member member;
 
     @OneToMany(mappedBy = "order")
-    @Column(name="ORDER_ITEM")
     private List<OrderItem> orderItems=new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name="DELIVERY_ID")
-    @Column(name="DELIVERY")
     private Delivery delivery;
 
-    @Column(name="ORDERDATE")
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="STATUS")
     private OrderStatus status;
 }

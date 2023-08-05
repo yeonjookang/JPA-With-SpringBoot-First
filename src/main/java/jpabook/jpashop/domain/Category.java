@@ -16,17 +16,16 @@ public class Category {
     @Column(name="CATEGORY_ID")
     private Long id;
 
-    @Column(name="CATEGORY_NAME")
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "CATEGORY_ITEM",
-            joinColumns = @JoinColumn(name = "CATEGORY_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
+    @JoinTable(name = "category_item",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="PARENT_ID")
+    @JoinColumn(name="parent_id")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")

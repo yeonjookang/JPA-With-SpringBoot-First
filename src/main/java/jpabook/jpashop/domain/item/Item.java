@@ -1,8 +1,8 @@
 package jpabook.jpashop.domain.item;
 
 import jakarta.persistence.*;
-import jdk.jfr.Category;
 import jdk.jfr.Enabled;
+import jpabook.jpashop.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,18 +16,15 @@ import java.util.List;
 @DiscriminatorColumn(name="dtype")
 public abstract class Item {
     @Id @GeneratedValue
-    @Column(name="ITEM_ID")
+    @Column(name="item_id")
     private Long id;
 
-    @Column(name="NAME")
     private String name;
 
-    @Column(name="PRICE")
     private int price;
 
-    @Column(name="STOCKQUANTITY")
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
-    private List<Category> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<Category>();
 }
