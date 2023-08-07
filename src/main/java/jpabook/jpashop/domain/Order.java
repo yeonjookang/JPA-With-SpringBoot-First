@@ -24,7 +24,7 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems=new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="DELIVERY_ID")
     private Delivery delivery;
 
@@ -32,4 +32,19 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    public void setMember(Member member){
+        this.member=member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery){
+        this.delivery=delivery;
+        delivery.setOrder(this);
+    }
 }
